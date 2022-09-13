@@ -1,5 +1,5 @@
-import { Button, Group, Header, Panel, SegmentedControl, SegmentedControlValue, Textarea, View } from '@vkontakte/vkui';
-import React, { useRef, useState } from 'react';
+import { Button, Div, Group, Header, Panel, SegmentedControl, SegmentedControlValue, Textarea, View } from '@vkontakte/vkui';
+import React, { useState } from 'react';
 import QRCode from 'qrcode';
 
 import './Encoder.css';
@@ -8,11 +8,12 @@ import { Icon24CheckCircleOn, Icon24DismissSubstract } from '@vkontakte/icons';
 export const Encoder: React.FC = () => {
   const [data, setData] = useState<string>('');
   const [enableEnter, setEnableEnter] = useState<SegmentedControlValue>(1);
-  const canvas = useRef<HTMLCanvasElement>(null);
+  const [code, setCode] = useState<string>('');
 
   const encode = async () => {
     try {
-      await QRCode.toCanvas(canvas.current, data, { width: 500 });
+      const code = await QRCode.toString(data, { width: 500, type: 'svg' });
+      setCode(code);
     } catch (e) {
       console.error(e);
     }
@@ -45,9 +46,7 @@ export const Encoder: React.FC = () => {
   return (
     <View activePanel="encoder">
       <Panel id="encoder">
-        <div className="qrcode">
-          <canvas ref={canvas} />
-        </div>
+        <Div className="qrcode" dangerouslySetInnerHTML={{ __html: code }} />
         <Group>
           <Textarea
             value={data}
