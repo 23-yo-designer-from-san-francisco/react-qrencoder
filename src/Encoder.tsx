@@ -9,6 +9,7 @@ import {
 } from '@vkontakte/vkui';
 import React, { useEffect, useState } from 'react';
 import QRCode from 'qrcode';
+import emptyQr from '../assets/empty_qr.svg?raw';
 
 import './Encoder.css';
 
@@ -40,7 +41,7 @@ export const Encoder: React.FC = () => {
       <Panel id="encoder">
         <PanelHeader>QR Encoder</PanelHeader>
         <AdaptivityProvider sizeY={SizeType.COMPACT}>
-          <Div className="qrcode" dangerouslySetInnerHTML={{ __html: code }} />
+          <Div className="qrcode" dangerouslySetInnerHTML={{ __html: code || emptyQr }} />
           <Group>
             <Textarea
               value={data}
