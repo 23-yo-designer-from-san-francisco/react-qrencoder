@@ -1,5 +1,15 @@
 .qrcode {
-    height: 500px;
+    height: 300px;
     display: flex;
     justify-content: center;
+}
+
+svg {
+    height: 300px;
+}
+
+#qrencoder {
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
 }

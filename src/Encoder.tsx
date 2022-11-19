@@ -36,7 +36,7 @@ export const Encoder: React.FC = () => {
   }, [data]);
 
   return (
-    <View activePanel="encoder">
+    <View id="qrencoder" activePanel="encoder">
       <Panel id="encoder">
         <PanelHeader>QR Encoder</PanelHeader>
         <AdaptivityProvider sizeY={SizeType.COMPACT}>
